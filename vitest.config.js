@@ -5,6 +5,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "jsdom",
-    include: ["js/tests/**/*.{test,spec}.js"],
+    // Update the include path to directly look inside js/utils for the test files
+    include: ["js/utils/**/*.{test,spec}.js"], // This includes any .test.js or .spec.js files in js/utils
   },
 });

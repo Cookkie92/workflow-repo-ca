@@ -1,42 +1,26 @@
-// import { describe, it, expect } from "vitest";
+import { describe, it, expect, beforeEach } from "vitest";
+import { getUsername, saveUser } from "./storage"; // Adjust the import path
 
-// const getUserName = () => {
-//   const user = JSON.parse(localStorage.getItem("user"));
-//   return user ? user.name : null;
-// };
-
-// describe("getUserName", () => {
-//   it("returns the name from the user object in storage", () => {
-//     localStorage.setItem("user", JSON.stringify({ name: "John Doe" }));
-//     expect(getUserName()).toBe("John Doe");
-//   });
-
-//   it("returns null when no user exists in storage", () => {
-//     localStorage.removeItem("user");
-//     expect(getUserName()).toBe(null);
-//   });
-// });
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import { getUserName } from "./getUserName";
-import { saveUser, clearStorage } from "./storage";
-
-describe("getUserName", () => {
+describe("getUsername function", () => {
   beforeEach(() => {
-    // Setup mock user object in storage before each test
-    saveUser({ name: "John Doe" });
+    // Clear localStorage before each test to ensure isolated tests
+    localStorage.clear();
   });
 
-  afterEach(() => {
-    // Clear the storage after each test
-    clearStorage();
+  it("should return the name from the user object in storage", () => {
+    // Set a user object in localStorage using saveUser function
+    const user = { name: "John Doe" };
+    saveUser(user); // Use saveUser instead of directly setting in localStorage
+
+    // Test if the name is returned
+    expect(getUsername()).toBe("John Doe");
   });
 
-  it("Returns the name from the user object in storage", () => {
-    expect(getUserName()).toBe("John Doe");
-  });
+  it("should return null when no user exists in storage", () => {
+    // Ensure localStorage is empty
+    localStorage.removeItem("user");
 
-  it("Returns null when no user exists in storage", () => {
-    clearStorage();
-    expect(getUserName()).toBeNull();
+    // Test that the function returns null
+    expect(getUsername()).toBeNull();
   });
 });
