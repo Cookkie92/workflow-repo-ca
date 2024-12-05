@@ -17,8 +17,8 @@
 //   });
 // });
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import { getUserName } from "../utils/getUserName";
-import { saveUser, clearStorage } from "../utils/storage";
+import { getUserName } from "./getUserName";
+import { saveUser, clearStorage } from "./storage";
 
 describe("getUserName", () => {
   beforeEach(() => {
