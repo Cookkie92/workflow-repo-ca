@@ -1,9 +1,11 @@
 import { describe, it, expect } from "vitest";
-import { isActivePath } from "./isActivePath"; // Adjusted import path
+import { isActivePath } from "./isActivePath";
 
 describe("isActivePath function", () => {
   it("should return true when current path matches href exactly", () => {
-    expect(isActivePath("/about", "/about")).toBe(true);
+    expect(isActivePath("/login/", "/login/")).toBe(true);
+    expect(isActivePath("/register/", "/register/")).toBe(true);
+    expect(isActivePath("/venue/", "/venue/")).toBe(true);
   });
 
   it("should return true for root path when path is '/' or '/index.html'", () => {
@@ -13,12 +15,11 @@ describe("isActivePath function", () => {
   });
 
   it("should return true when current path includes the href", () => {
-    expect(isActivePath("/about/team", "/about")).toBe(true);
-    expect(isActivePath("/services/overview", "/services")).toBe(true);
+    expect(isActivePath("/venue/details/", "/venue/")).toBe(true);
   });
 
   it("should return false when paths don't match", () => {
-    expect(isActivePath("/about", "/contact")).toBe(false);
-    expect(isActivePath("/about", "/about/team")).toBe(false);
+    expect(isActivePath("/login/", "/register/")).toBe(false);
+    expect(isActivePath("/venue/details/", "/login/")).toBe(false);
   });
 });

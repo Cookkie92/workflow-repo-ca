@@ -10,7 +10,7 @@ test("User can log in with valid credentials", async ({ page }) => {
   await page.click('button[type="submit"]');
 
   // Assert successful login
-  await expect(page).toHaveURL("http://127.0.0.1:5500/");
+  await expect(page.getByRole("button", { name: "Logout" })).toBeVisible();
 });
 
 test("User sees an error message with invalid credentials", async ({

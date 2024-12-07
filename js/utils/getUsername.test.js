@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { getUsername, saveUser } from "./storage"; // Adjust the import path
+import { getUsername } from "./storage";
 
 describe("getUsername function", () => {
   beforeEach(() => {
@@ -8,18 +8,15 @@ describe("getUsername function", () => {
   });
 
   it("should return the name from the user object in storage", () => {
-    // Set a user object in localStorage using saveUser function
+    // Set a user object directly in localStorage
     const user = { name: "John Doe" };
-    saveUser(user); // Use saveUser instead of directly setting in localStorage
+    localStorage.setItem("user", JSON.stringify(user));
 
     // Test if the name is returned
     expect(getUsername()).toBe("John Doe");
   });
 
   it("should return null when no user exists in storage", () => {
-    // Ensure localStorage is empty
-    localStorage.removeItem("user");
-
     // Test that the function returns null
     expect(getUsername()).toBeNull();
   });
