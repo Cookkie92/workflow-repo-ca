@@ -1,94 +1,124 @@
 # Workflow repo for the CA
 
-## Overview
+# Overview
 
-This project is designed to manage workflows, including testing and UI interactions. It is configured with Vitest for unit testing and Playwright for end-to-end (e2e) testing. The project also uses ESLint and Prettier for code formatting and linting, with Git hooks to ensure code quality.
+This project is designed to streamline workflows, including testing and UI interactions. It uses Vitest for unit testing, Playwright for end-to-end (e2e) testing, and integrates ESLint and Prettier for code linting and formatting. Git hooks ensure code quality during commits.
 
-## Table of Contents
-
-1. [Installation Instructions](#installation-instructions)
-2. [Scripts](#scripts)
-3. [Testing](#testing)
-   - [Unit Tests (Vitest)](#unit-tests-vitest)
-   - [End-to-End Tests (Playwright)](#end-to-end-tests-playwright)
-4. [Environment Variables](#environment-variables)
-5. [Code Formatting & Linting](#code-formatting--linting)
-6. [Contributing](#contributing)
-
-## Installation Instructions
-
+Table of Contents
+Installation Instructions
+Scripts
+Testing
+Unit Tests (Vitest)
+End-to-End Tests (Playwright)
+Environment Variables
+Code Formatting & Linting
+Contributing
+Installation Instructions
 Follow these steps to set up the project:
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/workflow-repo.git
-   cd workflow-repo
-   ```
+## Clone the repository:
+
+git clone https://github.com/your-username/workflow-repo.git
+cd workflow-repo
+
+## Install dependencies:
+
+npm install  
+Create an .env file based on .env.example and configure the required variables (see Environment Variables below).
+
+Scripts
+Run tailwind:
+
+npm run dev
+
+# Run Unit Tests (Vitest):
+
+npm run test
+
+# Run Unit Tests with Vitest UI:
+
+npm run test:ui
+
+# Run End-to-End Tests (Playwright):
+
+npx playwright test
+
+# Run Linting:
+
+npm run lint
+
+# Run Prettier Formatting:
+
+npm run format
+
+## Testing
 
 Unit Tests (Vitest)
-Unit tests are configured with Vitest to test specific functions in the project.
+The project uses Vitest to test specific functions:
 
-To run the unit tests, execute:
-
-npm run test - runs vitest on getusername and isactivepath
-
-You can also use the Vitest UI for a better testing interface:
-
-npm run test:ui - for better testing interface
-
-The unit tests include the following functions:
-
+Test Cases:
 isActivePath function:
 
 Returns true when the current path matches the href exactly.
 Returns true for the root path (/) when the path is / or /index.html.
 Returns true when the current path includes the href.
-Returns false when paths don't match.
+Returns false when paths don’t match.
 getUserName function:
 
-Returns the name from the user object in storage (first save a user object to storage).
-Returns null when no user exists in storage.
+Returns the name from the user object stored in local storage.
+Returns null when no user exists in local storage.
 
-End-to-End Tests (Playwright)
-End-to-end tests are configured with Playwright for simulating real user interactions and testing UI behavior.
+# Run Vitest tests using:
 
-To run the end-to-end tests, execute
+npm run test
 
-npx playwright test - tests login and navigation on the site
+# For a better UI experience:
 
-The e2e tests cover:
+npm run test:ui
 
+# End-to-End Tests (Playwright)
+
+The project uses Playwright to simulate user interactions and verify UI workflows.
+
+Test Cases:
 Login Test:
 
-User can successfully log in with valid credentials from environment variables.
-User sees an error message with invalid credentials.
+User successfully logs in with valid credentials (from .env).
+Displays an error message with invalid credentials.
 Navigation Test:
 
 Navigates to the home page.
 Waits for the venue list to load.
 Clicks the first venue.
-Verifies that the venue details page loads with "Venue details" in the heading.
+Verifies that the "Venue details" page loads with the heading "Venue details."
 
----
+# Run Playwright tests using:
 
-Environment Variables
-The following environment variables are required for the application to run:
+npx playwright test
 
-VITE_API_URL: The API URL for the application.
-VITE_LOGIN_USERNAME: The username used for login.
-VITE_LOGIN_PASSWORD: The password used for login.
+# Environment Variables
 
-Code Formatting & Linting
-The project uses ESLint and Prettier for code formatting and linting. The following Git hooks are set up to ensure that code is properly formatted before being committed:
+The following variables must be defined in an .env file for the project to function correctly:
+
+VITE_LOGIN_USERNAME=your-username  
+VITE_LOGIN_PASSWORD=your-password  
+Ensure the .env file is included in .gitignore to protect sensitive information. An example configuration is provided in .env.example.
+
+# Code Formatting & Linting
+
+ESLint: Enforces code quality and best practices for JavaScript.
+Prettier: Formats code to maintain consistent style.
+Git Hooks
+Pre-commit hooks ensure all code is linted and formatted before commits:
 
 JavaScript files: Automatically formatted with Prettier and linted with ESLint.
 HTML files: Automatically formatted with Prettier.
-If you attempt to commit code that doesn't follow the style guide, the commit will be rejected until you fix the issues.
+Commits will fail if the code does not adhere to the style guide. Fix issues before committing.
 
 Contributing
-Feel free to fork the project, make changes, and submit pull requests. For any issues or questions, open an issue in the repository.
+To contribute to the project:
 
-Additional Notes:
-Environment Configuration: The .env file is crucial for the Playwright e2e tests to function properly, as it contains login credentials and other necessary configurations.
-Running Playwright: Playwright should be installed and configured correctly, and you may need to configure your environment or browser settings for Playwright to work as expected.
-Let me know if you need any more changes or clarifications!
+Fork the repository.
+Create a new branch for your changes.
+Submit a pull request with a clear description of your work.
+For questions or issues, open an issue in the repository.
